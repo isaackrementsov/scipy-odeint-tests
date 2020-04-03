@@ -5,19 +5,20 @@ import CircuitLRC
 import numpy as np
 
 # Model an RLC circuit with 40hz AC voltage
-t = np.linspace(0, 1, 1000)
+t = np.linspace(0, 3, 1000)
 
 Q0 = 0
-I0 = 0.01
+I0 = 0
 
 R = 2
 L = 1
-C = 0.00015
+C = 0.000015
 
+Emax = 5
 w = 2*np.pi*40
 phi = 0
 def E(t):
-	return np.cos(3*t)
+	return Emax*np.cos(w*t + phi)
 
 lrc = CircuitLRC.CircuitLRC(Q0, I0, R, C, L, E, t)
 lrc.graph('circuit', 'Time (s)', 'Current (A)')
